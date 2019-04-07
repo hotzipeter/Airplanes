@@ -71,5 +71,4 @@ class Flight {
     var transferPositions: TransferPositions? = null
     @SerializedName("schemaVersion")
     var schemaVersion: String? = null
-
 }
