@@ -5,11 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.airplanes.model.Flight
 import javax.inject.Inject
 
-class DetailsActivity: AppCompatActivity(),DetailsScreen {
-    override fun showFlightDetail(flight: Flight) {
-
-    }
-
+class DetailsActivity: AppCompatActivity() {
     @Inject
     lateinit var detailsPresenter: DetailsPresenter
 
@@ -20,11 +16,11 @@ class DetailsActivity: AppCompatActivity(),DetailsScreen {
 
     override fun onStart() {
         super.onStart()
-        detailsPresenter.attachScreen(this)
+
     }
 
     override fun onStop() {
         super.onStop()
-        detailsPresenter.detachScreen()
+
     }
 }

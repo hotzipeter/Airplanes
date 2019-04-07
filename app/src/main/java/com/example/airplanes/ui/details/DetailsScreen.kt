@@ -4,4 +4,6 @@ import com.example.airplanes.model.Flight
 
 interface DetailsScreen {
     fun showFlightDetail(flight: Flight)
+    fun changeButtonImg()
+    fun showNetworkError(errorMsg: String)
 }
