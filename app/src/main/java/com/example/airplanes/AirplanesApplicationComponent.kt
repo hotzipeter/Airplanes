@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [UIModule::class, NetworkModule::class, InteractorModule::class])
-interface AirplanesComponent {
+interface AirplanesApplicationComponent {
     fun inject(detailsActivity: DetailsActivity)
-    fun inject(flightssFragment: FlightsFragment)
+    fun inject(flightsFragment: FlightsFragment)
 }

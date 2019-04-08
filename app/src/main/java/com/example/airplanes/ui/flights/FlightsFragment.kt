@@ -10,6 +10,9 @@ import com.example.airplanes.model.Flight
 import javax.inject.Inject
 
 class FlightsFragment: Fragment(), FlightsScreen {
+    override fun showNetworkError(errorMsg: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     @Inject
     lateinit var flightsPresenter: FlightsPresenter
