@@ -13,8 +13,22 @@ android:
   - extra-android-m2repository
   - addon-google_apis-google-28
   - sys-img-armeabi-v7a-android-21
+env:
+  global:
+  # Add this
+  - MALLOC_ARENA_MAX=2
+
+sudo: required
+
 before_install:
 - yes | sdkmanager "platforms;android-28"
+
+before_script:
+# Create and start emulator
+- echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a -s "768x1280"
+- emulator -avd test -no-audio -no-window &
+- adb wait-for-device
+- adb shell input keyevent 82 &
 deploy:
   provider: releases
   apikey: $GITHUB_KEY
@@ -28,4 +42,4 @@ notifications:
   - hotzipeti@gmail.com
   on_success: always
   on_failure: always
-script: ./gradlew :app:build
+script: ./gradlew :app:build  :app:connectedDebugAndroidTest
