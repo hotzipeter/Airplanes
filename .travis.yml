@@ -29,13 +29,7 @@ before_script:
 - emulator -avd test -no-audio -no-window &
 - adb wait-for-device
 - adb shell input keyevent 82 &
-deploy:
-  provider: releases
-  apikey: $GITHUB_KEY
-  file: app/build/outputs/apk/release/app-release.apk
-  skip_cleanup: true
-  on:
-  tags: true
+
 notifications:
   email:
   recipients:
