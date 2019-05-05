@@ -1,7 +1,7 @@
 package com.example.airplanes.interactor.favourites.event
 
-data class ModifyFavourites (
+data class GetFavourites (
     var code: Int = 0,
-    var fav: String="",
+    var fav: Collection<String>?=null,
     var throwable: Throwable? = null
 )

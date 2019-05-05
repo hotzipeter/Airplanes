@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 class Flights {
     @SerializedName("flights")
-    var flights: List<Flights>? = null
+    var flights: List<Flight>? = null
 }
