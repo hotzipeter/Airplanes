@@ -17,6 +17,6 @@ class InteractorModule {
 
     @Provides
     @Singleton
-    fun provideFavouritesInteractor(favouritesApi: FavouritesApi) = FavouritesInteracor(favouritesApi)
+    fun provideFavouritesInteractor() = FavouritesInteracor()
 
 }

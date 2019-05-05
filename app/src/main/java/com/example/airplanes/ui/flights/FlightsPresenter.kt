@@ -23,7 +23,7 @@ class FlightsPresenter @Inject constructor(private val executor: Executor,privat
 
     fun refreshFlights(route: String) {
         executor.execute {
-            flightsInteractor.getFlights(null,null,null,route)
+            flightsInteractor.getFlights("D",route)
         }
     }
 
