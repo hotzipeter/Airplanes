@@ -9,8 +9,9 @@ import io.swagger.client.apis.DefaultApi
 import io.swagger.client.models.Favourite
 import io.swagger.client.models.Favourites
 import org.greenrobot.eventbus.EventBus
+import javax.inject.Inject
 
-class FavouritesInteracor  (private val favouritesApi: FavouritesApi) {
+class FavouritesInteracor  @Inject constructor(private val favouritesApi: FavouritesApi) {
     fun postAirline(airline: String)
     {
         var fav= Favourite(airline)
