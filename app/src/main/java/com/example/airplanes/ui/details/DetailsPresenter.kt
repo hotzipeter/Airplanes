@@ -34,7 +34,7 @@ class DetailsPresenter @Inject constructor(private val executor: Executor,privat
             favouriteInteractor.postAirline(airline)
         }
     }
-    fun putAirline(airline: Collection<String>) {
+    fun putAirline(airline: Array<String>) {
         executor.execute {
             favouriteInteractor.putAirline(airline)
         }

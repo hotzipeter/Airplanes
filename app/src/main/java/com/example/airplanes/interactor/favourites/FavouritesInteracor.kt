@@ -1,27 +1,30 @@
 package com.example.airplanes.interactor.favourites
 
-import io.swagger.client.api.DefaultApi
-import io.swagger.client.model.Favourite
+
 import com.android.volley.Response
 import com.example.airplanes.interactor.favourites.event.GetFavourites
 import com.example.airplanes.interactor.favourites.event.ModifyFavourites
-import io.swagger.client.model.Favourites
+import io.swagger.client.apis.DefaultApi
+
+import io.swagger.client.models.Favourite
+import io.swagger.client.models.Favourites
 import org.greenrobot.eventbus.EventBus
 
 class FavouritesInteracor  constructor(){
     fun postAirline(airline: String)
     {
         var apiInstance = DefaultApi()
-        var fav=Favourite()
+        var fav= Favourite(airline)
 
-        fav.airline=airline
+
+
         apiInstance.addFavourite(fav)
     }
-    fun putAirline(airlines: Collection<String>){
+    fun putAirline(airlines: Array<String>){
         var apiInstance = DefaultApi()
-        var favs= Favourites()
+        var favs= Favourites(airlines)
 
-        favs.addAll(airlines)
+
         apiInstance.postFavourties(favs)
     }
     fun deleteAirline(airline: String){
@@ -31,41 +34,21 @@ class FavouritesInteracor  constructor(){
 
     fun getAirlineIsFavourite(airline: String){
         var apiInstance = DefaultApi()
-        var listener=Response.Listener<String>(){
-            x->
-            run {
-                val event = ModifyFavourites()
-                event.code=200
-                event.fav=x
-                EventBus.getDefault().post(event)
-            }
-        }
-        var err=Response.ErrorListener { x->run {
-            val event = ModifyFavourites()
-            event.code=x.networkResponse.statusCode
 
-            EventBus.getDefault().post(event)
-        } }
-        apiInstance.getFavourite(airline,listener,err)
+        var resp=apiInstance.getFavourite(airline)
+        var event=ModifyFavourites()
+        event.code=200
+        event.fav=resp
+        EventBus.getDefault().post(event)
     }
 
     fun getFavourites(favourites: Collection<String>){
         var apiInstance = DefaultApi()
-        var listener=Response.Listener<Favourites>(){
-                x->
-            run {
-                val event = GetFavourites()
-                event.code=200
-                event.fav=x
-                EventBus.getDefault().post(event)
-            }
-        }
-        var err=Response.ErrorListener { x->run {
-            val event = ModifyFavourites()
-            event.code=x.networkResponse.statusCode
 
-            EventBus.getDefault().post(event)
-        } }
-        apiInstance.getFavourites(listener,err)
+        var resp=apiInstance.getFavourites()
+        var event=GetFavourites()
+        event.code=200
+        event.fav=resp
+        EventBus.getDefault().post(event)
     }
 }
