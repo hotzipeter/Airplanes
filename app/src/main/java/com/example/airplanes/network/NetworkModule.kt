@@ -2,6 +2,7 @@ package com.example.airplanes.network
 
 import dagger.Module
 import dagger.Provides
+import io.swagger.client.apis.DefaultApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -32,12 +33,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAirlineApi(client: OkHttpClient): FavouritesApi {
-        val retrofit = Retrofit.Builder()
-            .client(client)
-            .baseUrl(NetworkConfig.AIRLINE_API_ENDPOINT_ADDRESS)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        return retrofit.create(FavouritesApi::class.java)
+    fun provideAirlineApi(): FavouritesApi {
+
+        return DefaultApi()
     }
 }

@@ -1,48 +1,41 @@
 package com.example.airplanes.interactor.favourites
 
 
-import com.android.volley.Response
 import com.example.airplanes.interactor.favourites.event.GetFavourites
 import com.example.airplanes.interactor.favourites.event.ModifyFavourites
+import com.example.airplanes.network.FavouritesApi
 import io.swagger.client.apis.DefaultApi
 
 import io.swagger.client.models.Favourite
 import io.swagger.client.models.Favourites
 import org.greenrobot.eventbus.EventBus
 
-class FavouritesInteracor  constructor(){
+class FavouritesInteracor  (private val favouritesApi: FavouritesApi) {
     fun postAirline(airline: String)
     {
-        var apiInstance = DefaultApi()
         var fav= Favourite(airline)
-
-
-
-        apiInstance.addFavourite(fav)
+        favouritesApi.addFavourite(fav)
     }
     fun putAirline(airlines: Array<String>){
-        var apiInstance = DefaultApi()
+
         var favs= Favourites(airlines)
-
-
-        apiInstance.postFavourties(favs)
+        favouritesApi.postFavourties(favs)
     }
     fun deleteAirline(airline: String){
-        var apiInstance = DefaultApi()
-        apiInstance.deleteFavourties(airline)
+        favouritesApi.deleteFavourties(airline)
     }
 
     fun getAirlineIsFavourite(airline: String){
-        var apiInstance = DefaultApi()
 
-        var resp=apiInstance.getFavourite(airline)
+
+        var resp=favouritesApi.getFavourite(airline)
         var event=ModifyFavourites()
         event.code=200
         event.fav=resp
         EventBus.getDefault().post(event)
     }
 
-    fun getFavourites(favourites: Collection<String>){
+    fun getFavourites(){
         var apiInstance = DefaultApi()
 
         var resp=apiInstance.getFavourites()

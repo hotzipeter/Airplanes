@@ -2,8 +2,8 @@ package com.example.airplanes.interactor
 
 import com.example.airplanes.interactor.favourites.FavouritesInteracor
 import com.example.airplanes.interactor.flights.FlightsInteractor
-import com.example.airplanes.model.Flights
 import com.example.airplanes.network.FavouritesApi
+
 import com.example.airplanes.network.FlightsApi
 import dagger.Module
 import dagger.Provides
@@ -17,6 +17,6 @@ class InteractorModule {
 
     @Provides
     @Singleton
-    fun provideFavouritesInteractor() = FavouritesInteracor()
+    fun provideFavouritesInteractor(favouritesApi: FavouritesApi) = FavouritesInteracor(favouritesApi)
 
 }

@@ -1,30 +1,20 @@
 package com.example.airplanes.network
 
-import retrofit2.http.*
+import io.swagger.client.models.Favourite
+import io.swagger.client.models.Favourites
+
 
 interface FavouritesApi {
-    @GET("airlines")
-    fun getAirline(
-        @Header("Authorization") authorisation: String,
-        @Query("airline") airline: String?
-    ): Unit
 
-    @DELETE("airlines")
-    fun deleteAirline(
-        @Header("Authorization") authorization: String,
-        @Query("airline") airline: String
-    ): Unit
+    fun addFavourite(addFavourite: Favourite):Unit
 
-    @POST("airlines")
-    @FormUrlEncoded
-    fun postAirline(
-        @Header("Authorization") authorization: String,
-        @Field("airline") airline: String
-    ): Unit
 
-    @PUT
-    fun putAirline(
-        @Header("Authorization") authorization: String,
-        @Field("airline") airline: String
-    ): Unit
+    fun deleteFavourties(favourite: kotlin.String) : Unit
+
+
+    fun getFavourite(favourite: kotlin.String) : kotlin.String
+
+
+    fun getFavourites() : Favourites
+    fun postFavourties(favourites: Favourites) : Unit
 }

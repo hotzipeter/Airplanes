@@ -11,20 +11,24 @@
 */
 package io.swagger.client.apis
 
+import com.example.airplanes.network.FavouritesApi
 import io.swagger.client.models.Favourite
 import io.swagger.client.models.Favourites
 
 import io.swagger.client.infrastructure.*
 
-class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Hotzi/FavouriteList/1.0.0") : ApiClient(basePath) {
+class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Hotzi/FavouriteList/1.0.0") : ApiClient(basePath),
+    FavouritesApi {
 
-    /**
+
+    override
+            /**
     * adds a favourite airline
     * Adds an item to the system
     * @param addFavourite Add favourite to the list (optional)
     * @return void
     */
-    fun addFavourite(addFavourite: Favourite) : Unit {
+    fun addFavourite(addFavourite: Favourite) {
         val localVariableBody: kotlin.Any? = addFavourite
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -61,7 +65,7 @@ class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Ho
     * @param favourite  
     * @return void
     */
-    fun deleteFavourties(favourite: kotlin.String) : Unit {
+    override fun deleteFavourties(favourite: kotlin.String) : Unit {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf("favourite" to listOf("$favourite"))
         
@@ -99,7 +103,7 @@ class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Ho
     * @return kotlin.String
     */
     @Suppress("UNCHECKED_CAST")
-    fun getFavourite(favourite: kotlin.String) : kotlin.String {
+    override fun getFavourite(favourite: kotlin.String) : kotlin.String {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf("favourite" to listOf("$favourite"))
         
@@ -136,7 +140,7 @@ class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Ho
     * @return Favourites
     */
     @Suppress("UNCHECKED_CAST")
-    fun getFavourites() : Favourites {
+    override fun getFavourites() : Favourites {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mapOf()
         
@@ -172,8 +176,10 @@ class DefaultApi(basePath: kotlin.String = "https://virtserver.swaggerhub.com/Ho
     * put new airline to favourites
     * @param favourites Update Favourites list (optional)
     * @return void
+
     */
-    fun postFavourties(favourites: Favourites) : Unit {
+
+    override fun postFavourties(favourites: Favourites) : Unit {
         val localVariableBody: kotlin.Any? = favourites
         val localVariableQuery: MultiValueMap = mapOf()
         
