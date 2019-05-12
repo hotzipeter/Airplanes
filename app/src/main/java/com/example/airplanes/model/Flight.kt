@@ -11,7 +11,7 @@ class Flight {
     var actualOffBlockTime: String? = null
     @SerializedName("aircraftRegistration")
     var aircraftRegistration: String? = null
-    @SerializedName("actualLandingTime")
+    @SerializedName("aircraftType")
     var aircraftType: AircraftType? = null
     @SerializedName("baggageClaim")
     var baggageClaim: BaggageClaim? = null

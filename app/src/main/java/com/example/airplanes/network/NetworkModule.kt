@@ -33,6 +33,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun provideFlightsPageApi(client: OkHttpClient): FlightsPageApi{
+        val retrofit=Retrofit.Builder().client(client).baseUrl(NetworkConfig.FLIGHT_PAGE_API_ENDPOINT_ADDRESS)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+        return retrofit.create(FlightsPageApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideAirlineApi(): FavouritesApi {
 
         return DefaultApi()

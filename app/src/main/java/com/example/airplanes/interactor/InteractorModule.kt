@@ -5,6 +5,7 @@ import com.example.airplanes.interactor.flights.FlightsInteractor
 import com.example.airplanes.network.FavouritesApi
 
 import com.example.airplanes.network.FlightsApi
+import com.example.airplanes.network.FlightsPageApi
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 class InteractorModule {
     @Provides
     @Singleton
-    fun provideFlightsInteractor(flightsApi: FlightsApi) = FlightsInteractor(flightsApi)
+    fun provideFlightsInteractor(flightsApi: FlightsApi,flightsPageApi: FlightsPageApi) = FlightsInteractor(flightsApi,flightsPageApi)
 
     @Provides
     @Singleton

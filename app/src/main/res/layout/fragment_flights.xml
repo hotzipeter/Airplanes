@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="291dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/route">
+
+            <EditText
+                    android:id="@+id/etFlight"
+                    android:layout_width="307dp"
+                    android:layout_height="match_parent"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+                android:text="Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnFilter" android:layout_weight="1"/>
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayoutFlights"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewFlights"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" tools:listitem="@layout/card_flight"
+                android:scrollbars="vertical"/>
+
+        <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/recyclerViewFlights"
+                android:gravity="center"
+                android:text="@string/no_data" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

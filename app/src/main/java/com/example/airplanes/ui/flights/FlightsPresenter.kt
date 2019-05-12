@@ -12,8 +12,9 @@ import java.util.concurrent.Executor
 
 class FlightsPresenter @Inject constructor(private val executor: Executor,private val flightsInteractor: FlightsInteractor): Presenter<FlightsScreen>(){
     override fun attachScreen(screen: FlightsScreen) {
-        super.attachScreen(screen)
         EventBus.getDefault().register(this)
+        super.attachScreen(screen)
+
     }
 
     override fun detachScreen() {

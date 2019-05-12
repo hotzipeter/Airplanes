@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Flights</string>
     <string name="flightdetails_name">Details</string>
+    <string name="filter">Filter</string>
+    <string name="favouriteselectionbutton">FavouriteSelectionButton</string>
+    <string name="departure">Departure</string>
+    <string name="route">Route</string>
+    <string name="airline">Airline</string>
+    <string name="flightnumber">FlightNumber</string>
+    <string name="time">9:00</string>
+    <string name="bud">BUD</string>
+    <string name="w6_6534">W6 6534</string>
+    <string name="no_data"/>
+    <string name="wzz">wzz</string>
 </resources>
