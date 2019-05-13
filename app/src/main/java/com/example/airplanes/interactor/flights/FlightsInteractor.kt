@@ -26,7 +26,7 @@ class FlightsInteractor @Inject constructor(private var flightsApi: FlightsApi, 
         try {
             var time=Calendar.getInstance()
 
-            val sdf = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+            val sdf = SimpleDateFormat("yyyy-MM-dd kk:mm:ss")
             val stringTime=sdf.format(time.time).replace(' ','T')
             time.add(Calendar.DAY_OF_MONTH,1)
             val stringTime1=sdf.format(time.time).replace(' ','T')
