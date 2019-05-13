@@ -1,6 +1,7 @@
 package com.example.airplanes.ui
 
 import android.content.Context
+import com.example.airplanes.interactor.database.DatabaseInteractor
 import com.example.airplanes.interactor.favourites.FavouritesInteracor
 import com.example.airplanes.interactor.flights.FlightsInteractor
 import com.example.airplanes.ui.details.DetailsPresenter
@@ -18,11 +19,11 @@ class UIModule(private val context: Context)  {
 
     @Provides
     @Singleton
-    fun flightPresenter(executor: Executor, flightsInteractor: FlightsInteractor)= FlightsPresenter(executor,flightsInteractor)
+    fun flightPresenter(executor: Executor, flightsInteractor: FlightsInteractor, databaseInteractor: DatabaseInteractor,favouritesInteractor: FavouritesInteracor)= FlightsPresenter(executor,flightsInteractor,databaseInteractor,favouritesInteractor)
 
     @Provides
     @Singleton
-    fun detailsPresenter(executor: Executor, favouritesInteractor: FavouritesInteracor)=DetailsPresenter(executor,favouritesInteractor)
+    fun detailsPresenter(executor: Executor, favouritesInteractor: FavouritesInteracor,databaseInteractor: DatabaseInteractor)=DetailsPresenter(executor,favouritesInteractor,databaseInteractor)
 
     @Provides
     @Singleton

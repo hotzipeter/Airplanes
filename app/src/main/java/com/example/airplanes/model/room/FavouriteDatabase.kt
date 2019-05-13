@@ -10,6 +10,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun favouriteDao(): FavouriteDAO
     companion object {
         private var INSTANCE: AppDatabase? = null
+        @Synchronized
         fun getInstance(context: Context): AppDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context.applicationContext,

@@ -21,8 +21,14 @@ import kotlinx.android.synthetic.main.fragment_flights.*
 import javax.inject.Inject
 
 class FlightsFragment: Fragment(), FlightsScreen {
+    override fun setFavourites(favs:List<String>) {
+        favourites=favs
+        flightAdapter?.setAi(favourites!!)
+    }
+
     private val displayedFlights: MutableList<Flight> = mutableListOf()
     private var flightAdapter: FlightsAdapter? = null
+    private var favourites: List<String>?=null
 
     private var selectedFlight: String? = ""
 
@@ -36,6 +42,7 @@ class FlightsFragment: Fragment(), FlightsScreen {
     override fun showFlights(flights: List<Flight>) {
         Log.i("Fragment",flights.size.toString())
         swipeRefreshLayoutFlights.isRefreshing = false
+
         displayedFlights.clear()
         if (flights != null) {
             displayedFlights.addAll(flights)
@@ -74,22 +81,23 @@ class FlightsFragment: Fragment(), FlightsScreen {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        flightsPresenter.getFlights()
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
         recyclerViewFlights.layoutManager = llm
 
-        flightAdapter = FlightsAdapter(context!!, displayedFlights){
-            Log.d("click","${it.flightName} Clicked")
+        flightAdapter = FlightsAdapter(context!!, displayedFlights, favourites){
+            Log.d("click",favourites.toString()+it.prefixICAO)
             val intent = Intent(context, DetailsActivity::class.java).apply {
                 putExtra("Code",it.flightName)
-                putExtra("Departure",it.scheduleDateTime)
+                putExtra("Departure",it.scheduleTime)
                 putExtra("Airline",it.prefixICAO)
                 putExtra("Route", it.route?.destinations.toString())
+                putExtra("Favourite", favourites?.contains(it.prefixICAO))
             }
             startActivity(intent)
         }
-
+        favourites?.toTypedArray()?.let { flightsPresenter.putAirline(it) }
         recyclerViewFlights.adapter = flightAdapter
         flightsPresenter.refreshFlights(selectedFlight!!)
         btnFilter.setOnClickListener {
@@ -102,6 +110,8 @@ class FlightsFragment: Fragment(), FlightsScreen {
 
     override fun onResume() {
         super.onResume()
+        selectedFlight = etFlight.text.toString()
+        flightsPresenter.getFlights()
         flightsPresenter.refreshFlights(selectedFlight!!)
     }
 

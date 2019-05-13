@@ -5,13 +5,14 @@ import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 
+
 @Dao
 interface FavouriteDAO {
 
     @Query("SELECT favourite FROM favourites")
     fun getAllGrades(): List<String>
-    @Query("SELECT favourite FROM favourites WHERE favourite = :favourite")
-    fun getSpecificGrades(favourite: String): List<String>
+    @Query("SELECT * FROM favourites WHERE favourite = :favourite")
+    fun getSpecificGrades(favourite: String): List<FavouritesORM>
     @Insert
     fun insertGrades(vararg favourites: FavouritesORM)
     @Delete

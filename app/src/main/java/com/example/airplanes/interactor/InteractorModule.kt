@@ -1,7 +1,9 @@
 package com.example.airplanes.interactor
 
+import com.example.airplanes.interactor.database.DatabaseInteractor
 import com.example.airplanes.interactor.favourites.FavouritesInteracor
 import com.example.airplanes.interactor.flights.FlightsInteractor
+import com.example.airplanes.model.room.FavouriteDAO
 import com.example.airplanes.network.FavouritesApi
 
 import com.example.airplanes.network.FlightsApi
@@ -19,5 +21,9 @@ class InteractorModule {
     @Provides
     @Singleton
     fun provideFavouritesInteractor(favouritesApi: FavouritesApi) = FavouritesInteracor(favouritesApi)
+
+    @Provides
+    @Singleton
+    fun provideDatabaseInteractor(favouriteDAO: FavouriteDAO) = DatabaseInteractor(favouriteDAO)
 
 }

@@ -1,9 +1,10 @@
 package com.example.airplanes.ui.details
 
-import com.example.airplanes.model.Flight
+import android.content.Intent
+
 
 interface DetailsScreen {
-    fun showFlightDetail(flight: Flight)
-    fun changeButtonImg()
+    fun showFlightDetail(intent: Intent)
+    fun changeButtonImg(state: Int)
     fun showNetworkError(errorMsg: String)
 }
